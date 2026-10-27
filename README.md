@@ -1,5 +1,7 @@
 # 生日宇宙
 
+[在线体验](https://xuyu666.github.io/birthday-universe/) · [自动发布记录](https://github.com/xuyu666/birthday-universe/actions/workflows/pages.yml)
+
 手机优先的静态生日礼物：点亮星光 → 三层粒子蛋糕 → 许愿 → 熄烛祝福 → 回忆星球 → 分享。
 
 当前是明确标注的示例礼物。没有用户账号、后端、上传、麦克风或分析埋点。愿望只在本次页面的 React 内存中，重载后清空。
