@@ -1,0 +1,39 @@
+.memory-universe { position: relative; width: 100%; animation: orbit-arrival .26s cubic-bezier(.23,1,.32,1) both; }
+.orbit-map { position: relative; height: 430px; width: 100%; touch-action: pan-y; cursor: grab; }
+.orbit-map[data-dragging=true], .orbit-map[data-dragging=true] .planet { cursor: grabbing; }
+.orbit-system { position: absolute; inset: 0; }
+.orbit-track { position: absolute; width: 63.36%; height: 57.6%; left: 18.32%; top: 21.2%; border: 1px solid #9c81972e; border-radius: 50%; transform: rotate(-13.75deg); pointer-events: none; }
+.track-two { width: 58.08%; height: 52.8%; left: 20.96%; top: 23.6%; transform: rotate(14.32deg); border-color: #cfb4bf22; }
+.track-distant { width: 88%; height: 80%; left: 6%; top: 10%; transform: rotate(-13.75deg); border-color: #bda4b30c; }
+.orbit-heart { position: absolute; top: 50%; left: 50%; width: 0; height: 0; pointer-events: none; }
+.orbit-heart::before { content: ""; position: absolute; width: 210px; height: 210px; transform: translate(-50%,-50%); background: radial-gradient(ellipse, #b77d9720, #66475608 40%, transparent 70%); }
+.orbit-heart span { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #f0dce3; transform: translate(-50%,-50%); box-shadow: 0 0 12px 2px #cf9bb284; }
+.orbit-heart i { position: absolute; width: 40px; height: 1px; transform: translate(-50%,-50%) rotate(-14deg); background: linear-gradient(90deg, transparent, #d6a8bb70, transparent); }.orbit-heart i:last-child { width: 32px; transform: translate(-50%,-50%) rotate(76deg); }
+.orbiting-planet { position: absolute; left: 50%; top: 50%; width: 0; height: 0; will-change: transform; }
+.planet { position: absolute; display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 18px; min-width: 108px; min-height: 100px; padding: 12px 8px; background: transparent; user-select: none; transform: translate(-50%,-50%); transition: none; touch-action: pan-y; border-radius: 12px; }
+.planet:active { transform: translate(-50%,-50%); }
+.planet-art { display: block; position: relative; width: var(--planet-size); height: var(--planet-size); flex-shrink: 0; }
+.planet-art::before { content: ""; position: absolute; inset: -14px; border: 1px solid #ead1dc70; border-radius: 50%; opacity: 0; transition: opacity .2s ease-out; }
+.planet-body { display: block; width: 100%; height: 100%; position: relative; border-radius: 50%; background: var(--planet-color); z-index: 1; box-shadow: 8px 10px 24px #06070d55, 0 0 12px #d7b5c10b; }
+.planet-surface { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; transform: rotate(-16deg); }
+.planet-surface img { position: absolute; left: 0; top: 0; width: 200%; height: 100%; max-width: none; object-fit: fill; animation: planet-surface-drift 140s linear infinite; opacity: .88; pointer-events: none; }
+.planet-kind-cloud .planet-surface { transform: rotate(15deg); }.planet-kind-cloud .planet-surface img { animation-duration: 110s; }
+.planet-kind-stone .planet-surface img { animation-duration: 190s; }.planet-kind-moon .planet-surface { transform: rotate(32deg); }.planet-kind-moon .planet-surface img { animation-duration: 230s; }
+.planet-light { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #f7eade30, transparent 35%), radial-gradient(ellipse at 24% 25%, transparent 22%, #15121b63 58%, #090911ed 88%); box-shadow: inset 1px 1px 1px #fce9e34d, inset -2px -2px 5px #08091080; }
+.planet-atmosphere { position: absolute; inset: -1px; border-radius: 50%; border: 1px solid #d5c5ce26; box-shadow: -2px -1px 8px #e5ced217; opacity: .7; }
+.planet-kind-cloud .planet-atmosphere { border-color: #b8cfdb33; box-shadow: -2px -1px 10px #b4d4e825; }
+.planet-rings { position: absolute; width: 195%; height: 48%; top: 26%; left: -47.5%; border-radius: 50%; transform: rotate(-24deg); pointer-events: none; background: repeating-radial-gradient(ellipse at center, transparent 0 43%, #bfae9b52 44% 46%, #bfae9b15 47% 48%, #d4c5b754 49% 50%, transparent 51% 53%, #bfae9b2e 54% 55%, transparent 56% 59%, #d9c7b64d 60% 63%, transparent 64% 100%); }
+.rings-back { z-index: 0; }.rings-front { z-index: 2; clip-path: inset(50% 0 0 0); }
+.planet-label { display: flex; align-items: center; white-space: nowrap; gap: 6px; font-size: 14px; line-height: 1.5; color: #d5c3cc; letter-spacing: .5px; text-shadow: 0 1px 8px #100b10; }
+.planet-number { font: 9px "Segoe UI",sans-serif; color: #b79eac; }.planet-arrow { color: #e5c8d5; font-size: 13px; opacity: 0; transform: translateX(-3px); transition: opacity .18s ease-out, transform .18s ease-out; }
+.planet:focus-visible .planet-art::before { opacity: .6; }.planet:focus-visible .planet-arrow { opacity: 1; transform: translateX(0); }
+.orbit-map[data-motion=paused] .planet-surface img { animation-play-state: paused; }
+@keyframes planet-surface-drift { to { transform: translateX(-50%); } }
+@keyframes orbit-arrival { from { opacity: 0; } to { opacity: 1; } }
+@media (hover:hover) and (pointer:fine) { .planet:hover .planet-art::before { opacity: .4; }.planet:hover .planet-label { color: #f7e8ee; }.planet:hover .planet-arrow { opacity: 1; transform: translateX(0); } }
+@media (min-width:768px) { .orbit-map { height: 430px; }.planet-art { width: calc(var(--planet-size) * 1.28); height: calc(var(--planet-size) * 1.28); }.planet { gap: 20px; }.planet-label { font-size: 15px; }.orbit-heart::before { width: 290px; height: 290px; } }
+@media (prefers-reduced-motion:reduce) { .memory-universe, .planet-surface img { animation: none; }.orbiting-planet { will-change: auto; } }
+
+.orbit-controls { display: flex; justify-content: center; align-items: center; gap: 12px; margin: -4px 0 8px; position: relative; z-index: 12; }
+.orbit-controls button { min-width: 44px; min-height: 44px; border: 1px solid #876b7d55; border-radius: 50%; color: var(--muted); background: #19121c70; font-size: 18px; transition: border-color 180ms, background 180ms; }
+.orbit-controls button:hover { border-color: #c6a7b5; background: #3c293955; }.orbit-controls .orbit-reset { border: 0; border-radius: 0; background: transparent; font-size: 12px; letter-spacing: .6px; padding-inline: 10px; }

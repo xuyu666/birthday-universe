@@ -1,0 +1,58 @@
+.ritual { min-height: calc(100vh - 130px); min-height: calc(100svh - 130px); display: flex; align-items: center; flex-direction: column; justify-content: center; padding: 16px 24px 24px; gap: 8px; }
+.scene-heading { text-align: center; position: relative; z-index: 1; width: 100%; }
+.scene-title { font-family: var(--serif); color: var(--ink); margin: 22px 0 14px; line-height: 1.65; letter-spacing: 2px; }
+.chinese { font-size: clamp(26px, 6.8vw, 32px); }
+.birthday { font: 400 clamp(44px, 12vw, 52px)/1.02 Georgia, "Times New Roman", serif; letter-spacing: -1.5px; margin-block: 18px 16px; }
+.subtitle { color: var(--muted); font-size: 16px; letter-spacing: 1px; }
+.visual-slot { position: relative; width: min(100%, 500px); height: clamp(230px, 32svh, 300px); flex-shrink: 0; }
+[data-scene=intro] .visual-slot { height: clamp(180px, 27svh, 250px); }
+.stage-art { position: absolute; inset: 0; pointer-events: none; }.stage-hidden { visibility: hidden; }
+.stage-art > div { position: absolute !important; inset: 0; }
+.fallback-cake { position: absolute; height: 100%; width: 100%; inset: 0; filter: drop-shadow(0 0 7px #a55d7d55); }
+.flame { animation: candle 2s ease-in-out infinite alternate; transform-origin: center; }
+@keyframes candle { to { opacity: .7; transform: translateY(1px); } }
+.scene-actions { display: flex; flex-direction: column; align-items: center; gap: 13px; text-align: center; position: relative; z-index: 1; width: 100%; }
+.scene-actions > p { color: var(--muted); font-size: 16px; letter-spacing: .5px; }.scene-actions > .serif-note { color: var(--quiet); margin-top: 8px; font-size: 15px; }
+.scene-actions .text-button { margin-top: -8px; }
+.scene-actions .primary { min-width: 198px; }
+.blessing { max-width: 28ch; margin-bottom: 10px; }
+.intro-light { position: absolute; border: 0; background: transparent; inset: 0; width: 100%; min-height: 44px; }
+.intro-light::before { content: ""; position: absolute; inset: 15% 21%; background: radial-gradient(ellipse, #b56d8d15, transparent 68%); }
+.star-cross { position: absolute; top: 49%; left: 50%; width: 7px; height: 7px; background: #ffebeb; border-radius: 50%; box-shadow: 0 0 12px 5px #f5c8d77a, 0 0 54px 16px #bd7d9a30; transform: translate(-50%, -50%); }
+.star-cross::before, .star-cross::after { content: ""; position: absolute; background: linear-gradient(90deg, transparent, #ffe3ef, transparent); height: 1px; width: 96px; top: 3px; left: -44px; }.star-cross::after { transform: rotate(90deg); width: 112px; left: -53px; }
+.light-orbit { position: absolute; width: 124px; height: 124px; top: calc(50% - 62px); left: calc(50% - 62px); border: 1px solid #b57d9770; border-top-color: transparent; border-left-color: transparent; border-radius: 50%; transform: rotate(-32deg) scaleX(.72); }
+.light-orbit::after { position: absolute; content: ""; width: 4px; height: 4px; border-radius: 50%; background: #e1b8c9; top: 8px; right: 19px; box-shadow: 0 0 10px #eab8cf; }
+.tiny-star { position: absolute; width: 2px; height: 2px; background: #dcb7ca; border-radius: 50%; }.tiny-star.one { top: 25%; left: 28%; }.tiny-star.two { top: 78%; right: 25%; }
+.wish-burst { position: absolute; top: 43%; left: 50%; animation: wish-release 1.6s cubic-bezier(.23,1,.32,1) both; }
+.wish-burst i { position: absolute; width: 2px; height: 2px; background: #f1cedd; border-radius: 50%; }
+@keyframes wish-release { from { transform: scale(.4); opacity: 0; } 20% { opacity: 1; } to { transform: scale(1.6); opacity: 0; } }
+[data-paused=true] .flame, [data-paused=true] .wish-burst { animation-play-state: paused; }
+.universe-page { padding-top: 20px; justify-content: flex-start; }
+.universe-page .scene-title { margin-block: 15px 10px; line-height: 1.5; }
+.universe-page .visual-slot { width: min(calc(100% + 16px), 760px); height: auto; min-height: 560px; }
+.orbit-hint { text-align: center; color: var(--quiet); font-size: 13px; padding-bottom: 18px; }
+.memory-list { margin: 0 16px 20px; border-top: 1px solid #6b42534d; border-bottom: 1px solid #6b42534d; }
+.memory-list summary { display: flex; align-items: center; justify-content: space-between; color: var(--muted); min-height: 54px; cursor: pointer; font-size: 14px; list-style: none; }.memory-list summary::-webkit-details-marker { display: none; }
+.memory-list ul { list-style: none; padding: 0; margin: 0 0 10px; }.memory-list li button { width: 100%; min-height: 48px; display: grid; grid-template-columns: 30px 1fr 20px; text-align: left; background: transparent; font-size: 16px; color: var(--muted); }.list-index { color: var(--quiet); font-size: 12px; }
+.universe-actions { display: flex; align-items: center; flex-direction: column; gap: 10px; padding-bottom: 16px; }
+@media (min-width: 768px) { .ritual { min-height: calc(100svh - 164px); padding-block: 10px 32px; }.scene-title.chinese { font-size: 36px; }.birthday { font-size: clamp(60px, 7vw, 88px); letter-spacing: -3px; }.mobile-break { display: none; }.visual-slot { height: clamp(260px, 37svh, 360px); width: 540px; }.scene-heading .eyebrow { font-size: 10px; letter-spacing: 3.2px; }.universe-page .visual-slot { min-height: 510px; width: 760px; }.memory-list { max-width: 520px; margin-inline: auto; } }
+@media (max-height: 740px) and (max-width: 767px) { .site-header { min-height: 68px; }.ritual { min-height: calc(100svh - 118px); padding-top: 6px; padding-bottom: 12px; gap: 2px; }.birthday { font-size: 44px; }.mobile-break { display: none; }.scene-title { margin-block: 14px 10px; }.scene-title.chinese { font-size: 26px; }.visual-slot { height: 205px; }[data-scene=intro] .visual-slot { height: 165px; }.scene-actions { gap: 9px; }.scene-actions > p { font-size: 16px; }.scene-actions .primary { min-height: 48px; }.universe-page .visual-slot { min-height: 540px; }.universe-page { padding-top: 16px; } }
+@media (orientation: landscape) and (max-height: 500px) {
+  .site-header { min-height: 64px; padding-block: 8px; }.site-footer { min-height: 40px; padding-block: 10px; }
+  .ritual:not(.universe-page) { min-height: calc(100svh - 104px); display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); grid-template-rows: auto auto; column-gap: 12px; row-gap: 8px; padding: 8px 24px; }
+  .ritual:not(.universe-page) .scene-heading { grid-column: 1; grid-row: 1; align-self: end; }.ritual:not(.universe-page) .visual-slot { grid-column: 2; grid-row: 1 / 3; width: 100%; height: 240px; }
+  .ritual:not(.universe-page) .scene-actions { grid-column: 1; grid-row: 2; gap: 8px; align-self: start; }.scene-actions > .serif-note { display: none; }
+  .scene-title.chinese { font-size: 24px; margin-block: 8px; }.scene-heading .eyebrow { font-size: 8px; }.scene-heading .subtitle { font-size: 16px; }.birthday { font-size: 40px; margin-block: 8px; }.mobile-break { display: none; }.scene-actions .primary { min-height: 46px; padding-block: 10px; }
+}
+
+.breath-control { width: min(100%, 278px); display: flex; flex-direction: column; align-items: center; gap: 9px; }
+.breath-button { position: relative; overflow: hidden; width: 100%; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; gap: 20px; }
+.breath-button > span { position: relative; z-index: 1; }.breath-button[aria-pressed=true] { border-color: #e5bed0; background: #432b38; }
+.breath-symbol { font-size: 23px; font-weight: 300; line-height: 1; }.breath-meter { position: absolute; inset: auto 0 0; height: 3px; background: #f4d3df; transform-origin: left; pointer-events: none; }
+.breath-help { color: var(--quiet); font-size: 12px; line-height: 1.6; letter-spacing: .2px; min-height: 20px; }
+.cake-shortcuts { display: flex; align-items: center; gap: 18px; color: var(--quiet); }.scene-actions .cake-shortcuts .text-button { margin: 0; font-size: 14px; }
+.breath-flame { transform: skewX(calc(var(--breath, 0) * 22deg)) scaleY(calc(1 - var(--breath, 0) * .3)); }
+.breath-gust { pointer-events: none; }.breath-gust i { position: absolute; left: 32%; width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #f1d1df75, transparent); animation: gentle-breath 700ms cubic-bezier(.2,.7,.3,1) both; }
+@keyframes gentle-breath { from { opacity: 0; transform: translateX(-50px) scaleX(.3); } 25% { opacity: 1; } to { opacity: 0; transform: translateX(130px) scaleX(1.6); } }
+[data-paused=true] .breath-gust i { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .breath-flame { transform: none; }.breath-gust { display: none; } }
